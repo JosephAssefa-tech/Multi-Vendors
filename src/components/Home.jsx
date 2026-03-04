@@ -116,7 +116,7 @@ const handleSignin = () => {
  
     <div className="flex items-center space-x-2">
       <img src="./src/assets/logo.png" alt="multi-vendor" className="w-32 h-24 object-contain" />
-      <h3 className="text-2xl font-bold">Deliver</h3>
+      <h3 className="text-2xl font-bold">Deliver to</h3>
     </div>
 
     <div className="flex flex-1 mx-4 space-x-2">
@@ -168,7 +168,7 @@ const handleSignin = () => {
   </div>
 </div>
 
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
   {products.map((product) => (
     // <Cards
     //   key={index}

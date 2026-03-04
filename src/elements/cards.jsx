@@ -10,11 +10,11 @@ function Cards({ product }) {
 
     return(
     <>
-   <div className="bg-white shadow-md rounded-lg p-4 relative w-full sm:w-72 mt-32 space-2 z-50 relative">
+   <div className="bg-white shadow-md rounded-lg p-2 relative w-full sm:w-72 mt-26 space-2 z-50 relative">
       <img
         src={product.image} 
         alt={product.title}
-        className="w-full h-48 object-cover rounded-md mb-4"
+        className="w-full h-42 object-cover rounded-md mb-4"
       />
       <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
       <p className="text-gray-600 mb-4">{product.description}</p>
