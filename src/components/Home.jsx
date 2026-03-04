@@ -29,7 +29,9 @@ function Home(){
 const cart = useCartStore((state) => state.cart);
 const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
      const categories = ["All", "Electronics", "Clothing", "Books", "Home & Kitchen","Toys", "Sports", "Beauty"]
-const products = [
+     
+     const langs = ["English", "French", "Spanish", "German", "Chinese", "Japanese"]
+     const products = [
   {
     id: 1,
     title: "iPhone 15",
@@ -138,12 +140,24 @@ const handleSignin = () => {
         className="flex-1 px-3 py-2 border-t border-b border-gray-300 focus:outline-none w-full"
       />
 
+
+
       <button
         onClick={handleSearch}
         className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-r-lg font-semibold"
       >
         Search
       </button>
+
+                  <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        className="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        {langs.map((lang) => (
+          <option key={lang} value={lang}>{lang}</option>
+        ))}
+      </select>
     </div>
 
     <div className="flex items-center space-x-4">
