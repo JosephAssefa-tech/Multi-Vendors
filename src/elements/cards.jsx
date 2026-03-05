@@ -10,15 +10,15 @@ function Cards({ product }) {
 
     return(
     <>
-   <div className="bg-white shadow-md rounded-lg p-2 relative w-full sm:w-72 mt-26 space-2 z-50 relative">
+   <div className="bg-white shadow-md rounded-lg p-2 relative w-full lg:mt-22 mt-2 space-2 z-50 relative gap-2">
       <img
         src={product.image} 
         alt={product.title}
-        className="w-full h-42 object-cover rounded-md mb-4"
+        className="w-full lg:h-64 object-cover rounded-md "
       />
       <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
-      <p className="text-gray-600 mb-4">{product.description}</p>
-      <p className="text-gray-600 mb-4">{product.price} $</p>
+      <p className="text-gray-600 mb-2">{product.description}</p>
+      <p className="text-gray-600 mb-2">{product.price} $</p>
       <button className="bg-gray-200 hover:bg-blue-600 px-4 py-2 rounded-md">
         View Details
       </button>

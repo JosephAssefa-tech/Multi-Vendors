@@ -37,14 +37,14 @@ const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     title: "iPhone 15",
     description: "Latest Apple smartphone",
     price: 1200,
-    image: "./src/assets/logo.png"
+    image: "./src/assets/ipad2.jpg"
   },
   {
     id: 2,
     title: "Nike Shoes",
     description: "Comfortable running shoes",
     price: 150,
-    image: "./src/assets/logo.png"
+    image: "./src/assets/ipad.jpg"
   }
   ,
   {
@@ -52,7 +52,7 @@ const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     title: "Nike Shoes",
     description: "Comfortable running shoes",
     price: 350,
-    image: "./src/assets/logo.png"
+    image: "./src/assets/ipad2.jpg"
   }
   ,
   {
@@ -60,7 +60,7 @@ const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     title: "Nike Shoes",
     description: "Comfortable running shoes",
     price: 250,
-    image: "./src/assets/logo.png"
+    image: "./src/assets/ipad.jpg"
   }
   ,
   {
@@ -68,7 +68,7 @@ const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     title: "Nike Shoes",
     description: "Comfortable running shoes",
     price: 10,
-    image: "./src/assets/logo.png"
+    image: "./src/assets/ipad2.jpg"
   }
   ,
   {
@@ -76,7 +76,7 @@ const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     title: "Nike Shoes",
     description: "Comfortable running shoes",
     price: 100,
-    image: "./src/assets/logo.png"
+    image: "./src/assets/ipad.jpg"
   }
   ,
   {
@@ -84,7 +84,7 @@ const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     title: "Nike Shoes",
     description: "Comfortable running shoes",
     price: 10,
-    image: "./src/assets/logo.png"
+    image: "./src/assets/ipad2.jpg"
   }
   ,
   {
@@ -92,7 +92,7 @@ const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     title: "Nike Shoes",
     description: "Comfortable running shoes",
     price: 50,
-    image: "./src/assets/logo.png"
+    image: "./src/assets/ipad.jpg"
   }
 ];
 
@@ -113,15 +113,15 @@ const handleSignin = () => {
 
     return(<>
 
-<div className="w-full bg-green-100 z-50 relative">
-  <div className="flex items-center justify-between px-4 py-3">
+<div className="w-full relative bg-green-100 z-50 relative">
+  <div className="flex flex-col md:flex-row md:items-center md:justify-between px-4 py-3 gap-3">
  
     <div className="flex items-center space-x-2">
-      <img src="./src/assets/logo.png" alt="multi-vendor" className="w-32 h-24 object-contain" />
+      <img src="./src/assets/logo.png" alt="multi-vendor" className="w-20 h-16 md:w-32 md:h-24 object-contain" />
       <h3 className="text-2xl font-bold">Deliver to</h3>
     </div>
 
-    <div className="flex flex-1 mx-4 space-x-2">
+    <div className="flex flex-wrap md:flex-nowrap flex-1 mx-4 gap-2">
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
@@ -182,7 +182,7 @@ const handleSignin = () => {
   </div>
 </div>
 
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+<div  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 p-1 lg:p-4 lg:gap-4">
   {products.map((product) => (
     // <Cards
     //   key={index}
