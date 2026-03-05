@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom"
 import Cards from "../elements/cards"
 import {useCartStore} from "../store/cartStore"
 import Cart from "../components/Cart";
+import Footer from "../components/Footer/Footer";
 
 function Home(){
  const navigate = useNavigate()
@@ -194,6 +195,9 @@ const handleSignin = () => {
 key={product.id} product={product}
 />
   ))}
+</div>
+<div>
+  <Footer />
 </div>
         
     </>)
