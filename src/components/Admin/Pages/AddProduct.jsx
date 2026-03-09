@@ -1,7 +1,22 @@
 import React, { useState } from "react";
-import { TextField, Button, MenuItem } from "@mui/material";
+import { TextField, Button, MenuItem, IconButton } from "@mui/material";
+import { useForm, useFieldArray } from "react-hook-form";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function AddProduct() {
+
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      variants: [{ size: "", color: "", stock: "" }]
+    }
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "variants"
+  });
+
+  const [images, setImages] = useState([]);
 
   const categories = [
     "Electronics",
@@ -10,25 +25,6 @@ function AddProduct() {
     "Home",
     "Sports"
   ];
-const [variants, setVariants] = useState([
-  { size: "", color: "", stock: "" }
-]);
-  const [product, setProduct] = useState({
-    name: "",
-    price: "",
-    stock: "",
-    category: "",
-    description: ""
-  });
-
-  const [images, setImages] = useState([]);
-
-  const handleChange = (e) => {
-    setProduct({
-      ...product,
-      [e.target.name]: e.target.value
-    });
-  };
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -38,52 +34,61 @@ const [variants, setVariants] = useState([
       preview: URL.createObjectURL(file)
     }));
 
-    setImages([...images, ...imageUrls]);
+    setImages((prev) => [...prev, ...imageUrls]);
   };
 
-  const handleSubmit = () => {
-    console.log(product);
-    console.log(images);
+  const removeImage = (index) => {
+    setImages(images.filter((_, i) => i !== index));
+  };
+
+  const onSubmit = (data) => {
+    const productData = {
+      ...data,
+      images
+    };
+
+    console.log(productData);
   };
 
   return (
-    <div className="bg-white p-6 shadow rounded max-w-3xl">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="bg-white p-6 shadow rounded max-w-4xl"
+    >
 
       <h2 className="text-2xl font-bold mb-6">
         Add Product
       </h2>
 
+      {/* Product Fields */}
+
       <div className="grid grid-cols-2 gap-4">
 
         <TextField
           label="Product Name"
-          name="name"
+          {...register("name", { required: true })}
           fullWidth
-          onChange={handleChange}
         />
 
         <TextField
           label="Price"
-          name="price"
           type="number"
+          {...register("price", { required: true })}
           fullWidth
-          onChange={handleChange}
         />
 
         <TextField
           label="Stock"
-          name="stock"
           type="number"
+          {...register("stock")}
           fullWidth
-          onChange={handleChange}
         />
 
         <TextField
           select
           label="Category"
-          name="category"
+          {...register("category")}
           fullWidth
-          onChange={handleChange}
         >
           {categories.map((cat) => (
             <MenuItem key={cat} value={cat}>
@@ -94,15 +99,16 @@ const [variants, setVariants] = useState([
 
       </div>
 
+      {/* Description */}
+
       <div className="mt-4">
 
         <TextField
           label="Description"
-          name="description"
           multiline
           rows={4}
+          {...register("description")}
           fullWidth
-          onChange={handleChange}
         />
 
       </div>
@@ -111,12 +117,19 @@ const [variants, setVariants] = useState([
 
       <div className="mt-6">
 
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={handleImageUpload}
-        />
+        <label className="cursor-pointer inline-flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition">
+
+          Upload Images
+
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageUpload}
+          />
+
+        </label>
 
       </div>
 
@@ -125,43 +138,94 @@ const [variants, setVariants] = useState([
       <div className="flex gap-4 mt-4 flex-wrap">
 
         {images.map((img, index) => (
-          <img
-            key={index}
-            src={img.preview}
-            alt=""
-            className="w-24 h-24 object-cover rounded border"
-          />
+
+          <div key={index} className="relative">
+
+            <img
+              src={img.preview}
+              alt=""
+              className="w-60 h-60 object-cover rounded border"
+            />
+
+            <button
+              type="button"
+              onClick={() => removeImage(index)}
+              className="absolute top-1 right-1 bg-red-500  rounded-full px-2 text-black transition"
+            >
+              x
+            </button>
+
+          </div>
+
         ))}
 
       </div>
-<div className="mt-6">
 
-<h3 className="font-bold mb-2">Product Variants</h3>
+      {/* Product Variants */}
 
-{variants.map((variant, index) => (
+      <div className="mt-6">
 
-<div key={index} className="grid grid-cols-3 gap-3 mb-3">
+        <h3 className="font-bold mb-2">
+          Product Variants
+        </h3>
 
-<TextField label="Size" />
+        {fields.map((field, index) => (
 
-<TextField label="Color" />
+          <div
+            key={field.id}
+            className="grid grid-cols-4 gap-3 mb-3 items-center"
+          >
 
-<TextField label="Stock" />
+            <TextField
+              label="Size"
+              {...register(`variants.${index}.size`)}
+            />
 
-</div>
+            <TextField
+              label="Color"
+              {...register(`variants.${index}.color`)}
+            />
 
-))}
+            <TextField
+              label="Stock"
+              type="number"
+              {...register(`variants.${index}.stock`)}
+            />
 
-</div>
+            <IconButton
+              color="error"
+              onClick={() => remove(index)}
+            >
+              <DeleteIcon />
+            </IconButton>
+
+          </div>
+
+        ))}
+
+        <Button
+          type="button"
+          variant="outlined"
+          onClick={() =>
+            append({ size: "", color: "", stock: "" })
+          }
+        >
+          Add Variant
+        </Button>
+
+      </div>
+
+      {/* Submit */}
+
       <Button
+        type="submit"
         variant="contained"
         className="mt-6"
-        onClick={handleSubmit}
       >
         Save Product
       </Button>
 
-    </div>
+    </form>
   );
 }
 
