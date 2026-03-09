@@ -6,6 +6,7 @@ import AdminLayout from "./components/Admin/Layout/AdminLayout";
 import Dashboard from "./components/Admin/Pages/Dashboard";
 import Products from "./components/Admin/Pages/Products";
 import AddProduct from "./components/Admin/Pages/AddProduct"; 
+import Orders from "./components/Admin/Pages/Orders"; 
 
 function App() {
   return (
@@ -13,10 +14,20 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<Home />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/admin" element={<AdminLayout />} />
-      <Route path="/admin/dashboard" element={<Dashboard />} />
-      <Route path="/admin/products" element={<Products />} />
-      <Route path="/admin/products/add" element={<AddProduct />} />
+
+       <Route path="/admin" element={<AdminLayout />}>
+
+        <Route path="dashboard" element={<Dashboard />} />
+
+        <Route path="products" element={<Products />} />
+
+        <Route path="products/add" element={<AddProduct />} />
+
+        <Route path="orders" element={<Orders />} />
+
+      </Route>
+
+      
     </Routes>
   )
 }

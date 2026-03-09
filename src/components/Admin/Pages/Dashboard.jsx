@@ -1,9 +1,24 @@
 import React from "react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
+
+const data = [
+  { name: "Jan", sales: 4000 },
+  { name: "Feb", sales: 3000 },
+  { name: "Mar", sales: 5000 }
+];
+
 
 function Dashboard() {
-  return (
-    <div>
 
+  return (
+    
+    <div>
+    <BarChart width={400} height={300} data={data}>
+  <XAxis dataKey="name" />
+  <YAxis />
+  <Tooltip />
+  <Bar dataKey="sales" />
+</BarChart>
       <h2 className="text-2xl font-bold mb-6">
         Dashboard
       </h2>
