@@ -61,6 +61,13 @@ function Sidebar() {
       ]
     },
     {
+  title: "Vendors",
+  items: [
+    { name: "Vendor List", icon: <People />, path: "/admin/vendors" },
+    { name: "Register Vendor", icon: <AddBox />, path: "/admin/vendors/register" }
+  ]
+},
+    {
       title: "System",
       items: [
         { name: "Settings", icon: <Settings />, path: "/admin/settings" }

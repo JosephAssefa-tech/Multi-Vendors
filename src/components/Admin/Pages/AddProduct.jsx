@@ -60,9 +60,8 @@ function AddProduct() {
         Add Product
       </h2>
 
-      {/* Product Fields */}
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
 
         <TextField
           label="Product Name"
@@ -99,7 +98,7 @@ function AddProduct() {
 
       </div>
 
-      {/* Description */}
+
 
       <div className="mt-4">
 
@@ -113,7 +112,7 @@ function AddProduct() {
 
       </div>
 
-      {/* Image Upload */}
+
 
       <div className="mt-6">
 
@@ -133,7 +132,7 @@ function AddProduct() {
 
       </div>
 
-      {/* Image Preview */}
+
 
       <div className="flex gap-4 mt-4 flex-wrap">
 
@@ -161,7 +160,7 @@ function AddProduct() {
 
       </div>
 
-      {/* Product Variants */}
+     
 
       <div className="mt-6">
 
@@ -215,7 +214,7 @@ function AddProduct() {
 
       </div>
 
-      {/* Submit */}
+
 
       <Button
         type="submit"
