@@ -99,93 +99,106 @@ function Home() {
 
       <Box className="flex-1">
      
-        <Box className="w-full relative bg-green-100 z-50 relative">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between px-4 py-3 gap-3">
-      
-            <div className="flex items-center space-x-2">
-              <IconButton color="inherit" edge="start" onClick={handleDrawerToggle} sx={{ mr: 1 }}>
-                <MenuIcon />
-              </IconButton>
-              <img
-                src="./src/assets/logo.png"
-                alt="multi-vendor"
-                className="w-20 h-16 md:w-32 md:h-24 object-contain"
-              />
-              <h3 className="text-2xl font-bold">Deliver to</h3>
-            </div>
+<Box className="w-full relative bg-green-100 z-50">
+  <div className="flex flex-col md:flex-row md:items-center md:justify-between px-4 py-3 gap-4">
+
+    <div className="flex items-center justify-between md:justify-start w-full md:w-auto">
+      <div className="flex items-center space-x-2">
+        <IconButton color="inherit" edge="start" onClick={handleDrawerToggle}>
+          <MenuIcon />
+        </IconButton>
+
+        <img
+          src="./src/assets/logo.png"
+          alt="multi-vendor"
+          className="w-20 h-16 md:w-32 md:h-24 object-contain"
+        />
+
+        <h3 className="text-lg md:text-2xl font-bold hidden sm:block">
+          Deliver to
+        </h3>
+      </div>
+    </div>
 
 
-            <div className="flex flex-wrap md:flex-nowrap flex-1 mx-4 gap-2">
-              <Select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                {categories.map((cat) => (
-                  <MenuItem key={cat} value={cat}>
-                    {cat}
-                  </MenuItem>
-                ))}
-              </Select>
+    <div className="flex flex-col md:flex-row w-full md:flex-1 gap-2">
 
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search products"
-                className="flex-1 px-3 py-2 border-t border-b border-gray-300 focus:outline-none w-full"
-              />
+      <Select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        className="w-full md:w-40"
+      >
+        {categories.map((cat) => (
+          <MenuItem key={cat} value={cat}>
+            {cat}
+          </MenuItem>
+        ))}
+      </Select>
 
-              <Button
-                onClick={handleSearch}
-                sx={{
-                  backgroundColor: "#facc15",
-                  color: "#000",
-                  px: 4,
-                  py: 1,
-                  borderRadius: 1,
-                  "&:hover": { backgroundColor: "#eab308" },
-                }}
-              >
-                Search
-              </Button>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search products"
+        className="flex-1 px-3 py-2 border border-gray-300 rounded w-full"
+      />
 
-              <Select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                {langs.map((lang) => (
-                  <MenuItem key={lang} value={lang}>
-                    {lang}
-                  </MenuItem>
-                ))}
-              </Select>
-            </div>
+      <Button
+        onClick={handleSearch}
+        sx={{
+          backgroundColor: "#facc15",
+          color: "#000",
+          px: 3,
+          py: 1,
+          "&:hover": { backgroundColor: "#eab308" },
+        }}
+        className="w-full md:w-auto"
+      >
+        Search
+      </Button>
 
-            <div className="flex items-center space-x-4 mt-2 md:mt-0">
-              <Button
-                onClick={handleSignin}
-                sx={{
-                  backgroundColor: "#facc15",
-                  color: "#000",
-                  px: 4,
-                  py: 1,
-                  borderRadius: 1,
-                  "&:hover": { backgroundColor: "#eab308" },
-                }}
-              >
-                Signin
-              </Button>
-              <Badge badgeContent={cartCount} color="error">
-                <ShoppingCart
-                  sx={{ fontSize: 32, cursor: "pointer" }}
-                  onClick={() => navigate("/Cart")}
-                />
-              </Badge>
-            </div>
-          </div>
-        </Box>
+      <Select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        className="w-full md:w-32"
+      >
+        {langs.map((lang) => (
+          <MenuItem key={lang} value={lang}>
+            {lang}
+          </MenuItem>
+        ))}
+      </Select>
+
+    </div>
+
+
+    <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
+
+      <Button
+        onClick={handleSignin}
+        sx={{
+          backgroundColor: "#facc15",
+          color: "#000",
+          px: 4,
+          py: 1,
+          "&:hover": { backgroundColor: "#eab308" },
+        }}
+        className="w-full md:w-auto"
+      >
+        Signin
+      </Button>
+
+      <Badge badgeContent={cartCount} color="error">
+        <ShoppingCart
+          sx={{ fontSize: 32, cursor: "pointer" }}
+          onClick={() => navigate("/Cart")}
+        />
+      </Badge>
+
+    </div>
+
+  </div>
+</Box>
 
     
         <Box className="w-full bg-orange-100">

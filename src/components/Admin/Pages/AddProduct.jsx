@@ -202,7 +202,8 @@ function AddProduct() {
 
         ))}
 
-        <Button
+        <Button 
+       
           type="button"
           variant="outlined"
           onClick={() =>
@@ -219,7 +220,7 @@ function AddProduct() {
       <Button
         type="submit"
         variant="contained"
-        className="mt-6"
+        className="mt-8"
       >
         Save Product
       </Button>
