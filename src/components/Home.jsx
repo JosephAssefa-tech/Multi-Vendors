@@ -13,6 +13,8 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
+  ListItemIcon,
+  Divider
 } from "@mui/material";
 import { ShoppingCart, Menu as MenuIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +22,16 @@ import Cards from "../elements/cards";
 import { useCartStore } from "../store/cartStore";
 import ImageCarousel from "./ImageCarousel";
 import Footer from "../components/Footer/Footer";
+import {
+  Inventory,
+  Category,
+  LocalOffer,
+  Person,
+  Favorite,
+  Settings,
+  SupportAgent
+} from "@mui/icons-material";
+import { Home as HomeIcon } from "@mui/icons-material";
 
 function Home() {
   const navigate = useNavigate();
@@ -60,17 +72,100 @@ function Home() {
   };
 
   const drawer = (
-    <Box sx={{ width: 250 }} onClick={handleDrawerToggle}>
-      <List>
-        {["Home", "Products", "Cart", "Contact"].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+<Box sx={{ width: 260 }} onClick={handleDrawerToggle}>
+    
+    {/* MAIN */}
+    <Typography sx={{ p: 2, fontWeight: "bold" }}>
+      Main
+    </Typography>
+
+    <List>
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            {/* <Home /> */}
+            </ListItemIcon>
+          {/* <ListItemText primary="Home" /> */}
+        </ListItemButton>
+      </ListItem>
+
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon><Inventory /></ListItemIcon>
+          <ListItemText primary="All Products" />
+        </ListItemButton>
+      </ListItem>
+
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon><Category /></ListItemIcon>
+          <ListItemText primary="Categories" />
+        </ListItemButton>
+      </ListItem>
+    </List>
+
+    <Divider />
+
+    {/* SHOPPING */}
+    <Typography sx={{ p: 2, fontWeight: "bold" }}>
+      Shopping
+    </Typography>
+
+    <List>
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon><ShoppingCart /></ListItemIcon>
+          <ListItemText primary="Cart" />
+        </ListItemButton>
+      </ListItem>
+
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon><Favorite /></ListItemIcon>
+          <ListItemText primary="Wishlist" />
+        </ListItemButton>
+      </ListItem>
+
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon><LocalOffer /></ListItemIcon>
+          <ListItemText primary="Deals & Offers" />
+        </ListItemButton>
+      </ListItem>
+    </List>
+
+    <Divider />
+
+    {/* ACCOUNT */}
+    <Typography sx={{ p: 2, fontWeight: "bold" }}>
+      Account
+    </Typography>
+
+    <List>
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon><Person /></ListItemIcon>
+          <ListItemText primary="My Account" />
+        </ListItemButton>
+      </ListItem>
+
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon><SupportAgent /></ListItemIcon>
+          <ListItemText primary="Customer Service" />
+        </ListItemButton>
+      </ListItem>
+
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon><Settings /></ListItemIcon>
+          <ListItemText primary="Settings" />
+        </ListItemButton>
+      </ListItem>
+    </List>
+
+  </Box>
+
   );
 
 
