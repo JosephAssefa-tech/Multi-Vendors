@@ -73,11 +73,10 @@ function Home() {
 
   const drawer = (
 <Box sx={{ width: 260 }} onClick={handleDrawerToggle}>
-    
-    {/* MAIN */}
-    <Typography sx={{ p: 2, fontWeight: "bold" }}>
+
+    {/* <Typography sx={{ p: 2, fontWeight: "bold" }}>
       Main
-    </Typography>
+    </Typography> */}
 
     <List>
       <ListItem disablePadding>
@@ -106,7 +105,6 @@ function Home() {
 
     <Divider />
 
-    {/* SHOPPING */}
     <Typography sx={{ p: 2, fontWeight: "bold" }}>
       Shopping
     </Typography>
@@ -136,7 +134,6 @@ function Home() {
 
     <Divider />
 
-    {/* ACCOUNT */}
     <Typography sx={{ p: 2, fontWeight: "bold" }}>
       Account
     </Typography>
