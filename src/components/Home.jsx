@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { useProductStore } from "../store/ProductStore";
+// import { useProductStore } from "../store/ProductStore";
+
+import { fetchCategories } from "../services/ProductApi";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProducts } from "../services/ProductApi";
 import {
   Box,
   Button,
@@ -37,10 +41,11 @@ import { useEffect } from "react";
 
 function Home() {
   const navigate = useNavigate();
+
   // const {products,fetchProducts, loading} = useProductStore;
-const products = useProductStore((state) => state.products);
-const fetchProducts = useProductStore((state) => state.fetchProducts);
-const loading = useProductStore((state) => state.loading);
+// const products = useProductStore((state) => state.products);
+// const fetchProducts = useProductStore((state) => state.fetchProducts);
+// const loading = useProductStore((state) => state.loading);
 
   const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
@@ -49,27 +54,36 @@ const loading = useProductStore((state) => state.loading);
   const cart = useCartStore((state) => state.cart);
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
-  const categories = [
-    "All",
-    "Electronics",
-    "Clothing",
-    "Books",
-    "Home & Kitchen",
-    "Toys",
-    "Sports",
-    "Beauty",
-  ];
+  // const categories = [
+  //   "All",
+  //   "Electronics",
+  //   "Clothing",
+  //   "Books",
+  //   "Home & Kitchen",
+  //   "Toys",
+  //   "Sports",
+  //   "Beauty",
+  // ];
   const langs = ["English", "French", "Spanish", "German", "Chinese", "Japanese"];
 
+    const { data: products, isLoading, error } = useQuery({
+  queryKey: ["products"],
+  queryFn: fetchProducts
+    });
 
-useEffect(() => {
-  const loadProducts = async () => {
-    await fetchProducts();
-    console.log(useProductStore.getState().products);
-  };
+const { data: categories, isLoading: catLoading, error: catError } = useQuery({
+  queryKey: ["categories"],
+  queryFn: fetchCategories
+});
 
-  loadProducts();
-}, []);
+// useEffect(() => {
+//   const loadProducts = async () => {
+//     await fetchProducts();
+//     console.log(useProductStore.getState().products);
+//   };
+
+//   loadProducts();
+// }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -223,17 +237,21 @@ useEffect(() => {
 
     <div className="flex flex-col md:flex-row w-full md:flex-1 gap-2">
 
-      <Select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        className="w-full md:w-40"
-      >
-        {categories.map((cat) => (
-          <MenuItem key={cat} value={cat}>
-            {cat}
-          </MenuItem>
-        ))}
-      </Select>
+<Select
+  value={category}
+  onChange={(e) => setCategory(e.target.value)}
+  className="w-full md:w-40"
+>
+  {catLoading && <MenuItem disabled>Loading...</MenuItem>}
+
+  {catError && <MenuItem disabled>Error loading categories</MenuItem>}
+
+{categories?.map((cat) => (
+  <MenuItem key={cat} value={cat}>
+    {(cat || "").toString().charAt(0).toUpperCase() + (cat || "").toString().slice(1)}
+  </MenuItem>
+))}
+</Select>
 
       <input
         type="text"
@@ -306,15 +324,15 @@ useEffect(() => {
         </Box>
 
    
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 p-1 lg:p-4 lg:gap-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
 
-  {loading ? (
-    <h2>Loading products...</h2>
-  ) : (
-    products?.map((product) => (
-      <Cards key={product.id} product={product} />
-    ))
-  )}
+  {isLoading && <h2>Loading products...</h2>}
+
+  {error && <h2>Something went wrong</h2>}
+
+  {products?.map((product) => (
+    <Cards key={product.id} product={product} />
+  ))}
 
 </div>
 
