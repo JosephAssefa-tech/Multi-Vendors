@@ -12,7 +12,7 @@ function Cards({ product }) {
     <>
    <div className="bg-white shadow-md rounded-lg p-2 relative w-full lg:mt-22 mt-2 space-2 z-50 relative gap-2">
       <img
-        src={product.image} 
+        src={product.thumbnail} 
         alt={product.title}
         className="w-full lg:h-64 object-cover rounded-md "
       />

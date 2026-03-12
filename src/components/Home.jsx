@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useProductStore } from "../store/ProductStore";
 import {
   Box,
   Button,
@@ -32,9 +32,15 @@ import {
   SupportAgent
 } from "@mui/icons-material";
 import { Home as HomeIcon } from "@mui/icons-material";
+import { useEffect } from "react";
+
 
 function Home() {
   const navigate = useNavigate();
+  // const {products,fetchProducts, loading} = useProductStore;
+const products = useProductStore((state) => state.products);
+const fetchProducts = useProductStore((state) => state.fetchProducts);
+const loading = useProductStore((state) => state.loading);
 
   const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
@@ -55,17 +61,15 @@ function Home() {
   ];
   const langs = ["English", "French", "Spanish", "German", "Chinese", "Japanese"];
 
-  const products = [
-    { id: 1, title: "iPhone 15", description: "Latest Apple smartphone", price: 1200, image: "./src/assets/ipad2.jpg" },
-    { id: 2, title: "Nike Shoes", description: "Comfortable running shoes", price: 150, image: "./src/assets/ipad.jpg" },
-    { id: 3, title: "Nike Shoes", description: "Comfortable running shoes", price: 350, image: "./src/assets/ipad2.jpg" },
-    { id: 4, title: "Nike Shoes", description: "Comfortable running shoes", price: 250, image: "./src/assets/ipad.jpg" },
-    { id: 5, title: "Nike Shoes", description: "Comfortable running shoes", price: 10, image: "./src/assets/ipad2.jpg" },
-    { id: 6, title: "Nike Shoes", description: "Comfortable running shoes", price: 100, image: "./src/assets/ipad.jpg" },
-    { id: 7, title: "Nike Shoes", description: "Comfortable running shoes", price: 10, image: "./src/assets/ipad2.jpg" },
-    { id: 8, title: "Nike Shoes", description: "Comfortable running shoes", price: 50, image: "./src/assets/ipad.jpg" },
-  ];
 
+useEffect(() => {
+  const loadProducts = async () => {
+    await fetchProducts();
+    console.log(useProductStore.getState().products);
+  };
+
+  loadProducts();
+}, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -298,11 +302,17 @@ function Home() {
         </Box>
 
    
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 p-1 lg:p-4 lg:gap-4">
-          {products.map((product) => (
-            <Cards key={product.id} product={product} />
-          ))}
-        </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 p-1 lg:p-4 lg:gap-4">
+
+  {loading ? (
+    <h2>Loading products...</h2>
+  ) : (
+    products?.map((product) => (
+      <Cards key={product.id} product={product} />
+    ))
+  )}
+
+</div>
 
         <Footer />
       </Box>
