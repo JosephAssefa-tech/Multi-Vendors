@@ -171,8 +171,12 @@ useEffect(() => {
 
 
   const handleSignin = () => navigate("/signup");
-  const handleSearch = () => {
-    console.log(`Searching for "${query}" in category "${category}"`);
+  const handleSearch = async () => {
+    const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+    const data = await res.json();
+
+    useProductStore.setState({ products: data.products });
+   
   };
 
   return (
