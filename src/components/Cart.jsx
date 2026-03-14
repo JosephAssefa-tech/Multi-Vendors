@@ -56,7 +56,7 @@ function Cart() {
       
           <div className="mt-4 sm:mt-0 sm:ml-4">
             <img
-              src={item.image}
+              src={item.thumbnail}
               alt={item.title}
               className="w-32 h-32 object-cover rounded-lg border"
             />

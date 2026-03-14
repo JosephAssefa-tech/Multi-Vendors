@@ -1,11 +1,17 @@
 import { useStore } from "../store/store";
 import { useCartStore } from "../store/cartStore";
+import { useNavigate } from "react-router-dom";
 
 function Cards({ product }) {
-
+  const navigate = useNavigate();
   const{count,increase,decrese} = useStore();
   //const { addToCart } = useCartStore();
   const { addToCart } = useCartStore();
+  const showItemDetail = (product) => {
+    
+    console.log("Show details for:", product);
+  }
+  
 
 
     return(
@@ -19,7 +25,9 @@ function Cards({ product }) {
       <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
       <p className="text-gray-600 mb-2">{product.description}</p>
       <p className="text-gray-600 mb-2">{product.price} $</p>
-      <button className="bg-gray-200 hover:bg-blue-600 px-4 py-2 rounded-md">
+      <button 
+      onClick={() => navigate(`/product/${product.id}`, { state: product })}
+      className="bg-gray-200 hover:bg-blue-600 px-4 py-2 rounded-md">
         View Details
       </button>
 <button

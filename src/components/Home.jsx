@@ -54,16 +54,6 @@ function Home() {
   const cart = useCartStore((state) => state.cart);
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
-  // const categories = [
-  //   "All",
-  //   "Electronics",
-  //   "Clothing",
-  //   "Books",
-  //   "Home & Kitchen",
-  //   "Toys",
-  //   "Sports",
-  //   "Beauty",
-  // ];
   const langs = ["English", "French", "Spanish", "German", "Chinese", "Japanese"];
 
     const { data: products, isLoading, error } = useQuery({
