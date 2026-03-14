@@ -246,11 +246,11 @@ const { data: categories, isLoading: catLoading, error: catError } = useQuery({
 
   {catError && <MenuItem disabled>Error loading categories</MenuItem>}
 
-{categories?.map((cat) => (
-  <MenuItem key={cat} value={cat}>
-    {(cat || "").toString().charAt(0).toUpperCase() + (cat || "").toString().slice(1)}
-  </MenuItem>
-))}
+  {categories?.map((cat) => (
+    <MenuItem key={cat.slug} value={cat.slug}>
+      {cat.name}
+    </MenuItem>
+  ))}
 </Select>
 
       <input
