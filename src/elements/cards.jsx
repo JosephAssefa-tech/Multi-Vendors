@@ -5,11 +5,9 @@ import { useNavigate } from "react-router-dom";
 function Cards({ product }) {
   const navigate = useNavigate();
   const{count,increase,decrese} = useStore();
-  //const { addToCart } = useCartStore();
   const { addToCart } = useCartStore();
   const showItemDetail = (product) => {
     
-    console.log("Show details for:", product);
   }
   
 

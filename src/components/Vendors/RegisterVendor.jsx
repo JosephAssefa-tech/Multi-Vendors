@@ -7,7 +7,6 @@ function RegisterVendor() {
   const handleChange = (e) => setVendor({ ...vendor, [e.target.name]: e.target.value });
 
   const handleSubmit = () => {
-    console.log("Vendor submitted:", vendor);
   };
 
   return (

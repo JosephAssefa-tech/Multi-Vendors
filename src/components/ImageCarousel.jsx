@@ -6,7 +6,6 @@ export default function ImageCarousel() {
   const images = [
     "./src/assets/easter.jpg",
     "./src/assets/kitchen.jpg",
-    // "./src/assets/gaming.jpg",
     "./src/assets/shop_.jpg",
   ]
 
