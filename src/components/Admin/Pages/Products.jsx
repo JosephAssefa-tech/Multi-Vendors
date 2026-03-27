@@ -4,19 +4,19 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const rows = [
-  { id: 1, name: "iPhone 15", price: 1200, stock: 10 },
-  { id: 2, name: "Nike Shoes", price: 150, stock: 20 },
+  { id: 1, category: "Electronics", name: "iPhone 15", price: 1200, stock: 10 },
+  { id: 2, category: "Clothing", name: "Nike Shoes", price: 150, stock: 20 },
 ];
 
 function Products() {
-  const products = useProductStore((state) => state.products);
-  
+  // const products = useProductStore((state) => state.products);
+
   const navigate = useNavigate();
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     { field: "name", headerName: "Product", width: 200 },
-    { field: "name", headerName: "Category", width: 200 },
+    { field: "category", headerName: "Category", width: 200 },
     { field: "price", headerName: "Price", width: 130 },
     { field: "stock", headerName: "Stock", width: 130 },
   ];
