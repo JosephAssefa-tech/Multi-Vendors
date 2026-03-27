@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { TextField, Button, MenuItem, IconButton } from "@mui/material";
 import { useForm, useFieldArray } from "react-hook-form";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {useProductStore} from "../../../store/ProductStore";
 
 function AddProduct() {
-
+  const addProduct = useProductStore((state) => state.addProduct);
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
       variants: [{ size: "", color: "", stock: "" }]
@@ -41,14 +42,16 @@ function AddProduct() {
     setImages(images.filter((_, i) => i !== index));
   };
 
-  const onSubmit = (data) => {
-    const productData = {
-      ...data,
-      images
-    };
-
-    console.log(productData);
+const onSubmit = async (data) => {
+  const productData = {
+    ...data,
+    images
   };
+
+  await addProduct(productData);
+
+  console.log("Saved to Zustand:", productData);
+};
 
   return (
     <form

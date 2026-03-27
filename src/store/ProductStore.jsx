@@ -21,4 +21,30 @@ export const useProductStore = create((set) => ({
 //       set({ loading: false });
 //     }
 //   }
+
+// Add product (local state)
+  addProduct: async (product) => {
+    set({ loading: true });
+
+    try {
+      //  Later replace with your .NET API
+      // const res = await fetch('/api/products', { method: 'POST', body: JSON.stringify(product) });
+
+      const newProduct = {
+        ...product,
+        id: Date.now(), // temp ID
+        createdAt: new Date()
+      };
+
+      set((state) => ({
+        products: [...state.products, newProduct],
+        loading: false
+      }));
+
+    } catch (err) {
+      set({ error: err.message, loading: false });
+    }
+  }
+
+
 }));
