@@ -9,11 +9,14 @@ const rows = [
 ];
 
 function Products() {
+  const products = useProductStore((state) => state.products);
+  
   const navigate = useNavigate();
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     { field: "name", headerName: "Product", width: 200 },
+    { field: "name", headerName: "Category", width: 200 },
     { field: "price", headerName: "Price", width: 130 },
     { field: "stock", headerName: "Stock", width: 130 },
   ];
