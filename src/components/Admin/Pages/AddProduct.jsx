@@ -56,7 +56,7 @@ const onSubmit = async (data) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white p-6 shadow rounded max-w-4xl"
+      className="bg-white p-6 ml-24 mr-24 shadow rounded "
     >
 
       <h2 className="text-2xl font-bold mb-6">

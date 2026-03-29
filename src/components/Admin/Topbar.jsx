@@ -9,7 +9,12 @@ function Topbar() {
         Admin Dashboard
       </h1>
 
-      <Avatar />
+      {/* <Avatar /> */}
+       <img
+    src="../../assets/logo.png"
+    alt="User"
+    className="w-10 h-10 rounded-full object-cover"
+  />
 
     </div>
   );
