@@ -10,6 +10,7 @@ import Orders from "./components/Admin/Pages/Orders";
 import VendorList from "./components/Vendors/VendorList";
 import RegisterVendor from "./components/Vendors/RegisterVendor";
 import ProductDetail from "./components/ProductDetail";
+import Categories from "./components/Admin/Pages/Categories";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Route path="dashboard" element={<Dashboard />} />
 
         <Route path="products" element={<Products />} />
+
+        <Route path="/admin/categories" element={<Categories />} />
 
         <Route path="products/add" element={<AddProduct />} />
 
