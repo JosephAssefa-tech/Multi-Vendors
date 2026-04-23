@@ -8,8 +8,6 @@ function Topbar() {
       <h1 className="text-xl font-bold">
         Admin Dashboard
       </h1>
-
-      {/* <Avatar /> */}
        <img
     src="../../assets/logo.png"
     alt="User"

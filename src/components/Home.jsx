@@ -42,10 +42,6 @@ import { useEffect } from "react";
 function Home() {
   const navigate = useNavigate();
 
-  // const {products,fetchProducts, loading} = useProductStore;
-// const products = useProductStore((state) => state.products);
-// const fetchProducts = useProductStore((state) => state.fetchProducts);
-// const loading = useProductStore((state) => state.loading);
 
   const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
@@ -66,14 +62,7 @@ const { data: categories, isLoading: catLoading, error: catError } = useQuery({
   queryFn: fetchCategories
 });
 
-// useEffect(() => {
-//   const loadProducts = async () => {
-//     await fetchProducts();
-//     console.log(useProductStore.getState().products);
-//   };
 
-//   loadProducts();
-// }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
