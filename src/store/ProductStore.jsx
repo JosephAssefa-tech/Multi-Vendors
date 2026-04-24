@@ -22,17 +22,16 @@ export const useProductStore = create((set) => ({
 //     }
 //   }
 
-// Add product (local state)
+
   addProduct: async (product) => {
     set({ loading: true });
 
     try {
-      //  Later replace with your .NET API
       // const res = await fetch('/api/products', { method: 'POST', body: JSON.stringify(product) });
 
       const newProduct = {
         ...product,
-        id: Date.now(), // temp ID
+        id: Date.now(),
         createdAt: new Date()
       };
 
