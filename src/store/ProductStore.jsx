@@ -27,8 +27,6 @@ export const useProductStore = create((set) => ({
     set({ loading: true });
 
     try {
-      // const res = await fetch('/api/products', { method: 'POST', body: JSON.stringify(product) });
-
       const newProduct = {
         ...product,
         id: Date.now(),
