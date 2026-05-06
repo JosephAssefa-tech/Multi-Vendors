@@ -86,14 +86,14 @@ const [isSucceded, setIsSucceded] = useState(true)
           Continue with Google
         </button>
 
-        {/* Divider */}
+
         <div className="flex items-center my-6">
           <hr className="flex-grow border-gray-300" />
           <span className="px-2 text-gray-400 text-sm">OR</span>
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        {/* Form */}
+
         <form onSubmit={handleSubmit} className="space-y-4">
 
           <input
@@ -141,7 +141,6 @@ const [isSucceded, setIsSucceded] = useState(true)
           )}
         </form>
 
-        {/* Footer */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
           <span className="text-blue-600 cursor-pointer hover:underline">
