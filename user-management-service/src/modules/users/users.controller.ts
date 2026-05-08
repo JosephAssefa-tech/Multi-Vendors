@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { UsersService } from './application/services/users.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { PermissionsGuard } from '../auth/guards/permissions.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { hasPermissions } from '../auth/decorators/permissions.decorator';
+import { Policy } from '../auth/decorators/policy.decorator';
+import { PolicyGuard } from '../auth/guards/policy.guard';
 
 @Controller('users')
 export class UsersController {
@@ -32,4 +34,11 @@ export class UsersController {
   @UseGuards(JwtAuthGuard, PermissionsGuard)
   @hasPermissions('delete_user')
   removeUser() {}
+
+  @Put(':id')
+  @UseGuards(JwtAuthGuard, PolicyGuard)
+  @Policy(
+    (user, targetUser) => user.role === 'admin' || user.id === targetUser.id,
+  )
+  updateUser() {}
 }
