@@ -37,8 +37,6 @@ export class UsersController {
 
   @Put(':id')
   @UseGuards(JwtAuthGuard, PolicyGuard)
-  @Policy(
-    (user, targetUser) => user.role === 'admin' || user.id === targetUser.id,
-  )
+  @Policy('user:update:own')
   updateUser() {}
 }

@@ -1,0 +1,4 @@
+export type PolicyHandler = (
+  user: any,
+  resource?: any,
+) => boolean | Promise<boolean>;
