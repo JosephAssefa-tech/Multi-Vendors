@@ -9,7 +9,7 @@ import { User } from '../domain/entities/user';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'yourpassword',
+      password: 'Admin@1234',
       database: 'users_db',
       entities: [User],
       synchronize: true, // ❗ only dev

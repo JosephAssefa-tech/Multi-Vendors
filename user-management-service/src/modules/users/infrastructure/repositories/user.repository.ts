@@ -21,4 +21,7 @@ export class UserRepository {
   findAll() {
     return this.repo.find();
   }
+    update(id: string, partial: Partial<User>) {
+    return this.repo.update(id, partial);
+  }
 }
