@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Role } from 'src/modules/roles/entity/role';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -25,5 +26,13 @@ export class User {
 
   @Column({ nullable: true })
   hashedRefreshToken?: string;
+
+
+  @ManyToMany (() => Role)
+  @JoinTable({
+    name:'user_roles',
+  })
+  roles!: Role[];
+  
 
 }

@@ -24,4 +24,14 @@ export class UserRepository {
     update(id: string, partial: Partial<User>) {
     return this.repo.update(id, partial);
   }
+  async findByEmailWithRoles(email: string) {
+  return this.repo.findOne({
+    where: { email },
+    relations: {
+      roles: {
+        permissions: true,
+      },
+    },
+  });
+}
 }

@@ -29,8 +29,9 @@ update(userId: string, partial: Partial<User>) {
   return this.userRepo.update(userId, partial);
 }
 
-async findByEmail(email: string) {
-  return this.userRepo.findByEmail(email);
+async findByEmailWithRoles(email: string) {
+   return this.userRepo.findByEmailWithRoles(email)
+
 }
 
 }

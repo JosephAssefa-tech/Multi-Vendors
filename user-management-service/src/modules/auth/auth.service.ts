@@ -15,22 +15,40 @@ export class AuthService {
     const hash = await bcrypt.hash(password, 10);
     const user = await this.usersService.createUser(email, hash);
 
-    return this.generateTokens(user.id, user.email);
+    return this.generateTokens(user);
   }
 
     async login(email: string, password: string) {
-    const user = await this.usersService.findByEmail(email);
+    const user = await this.usersService.findByEmailWithRoles(email);
     if (!user) throw new UnauthorizedException('Invalid credentials');
 
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) throw new UnauthorizedException('Invalid credentials');
 
-    return this.generateTokens(user.id, user.email);
+    return this.generateTokens(user);
   }
 
 
-    async generateTokens(userId: string, email: string) {
-    const payload = { sub: userId, email };
+    async generateTokens(user: any) {
+   
+    const roles = user.roles.map(
+  (role: any) => role.name,
+);
+
+const permissions = user.roles.flatMap(
+  (role: any) =>
+    role.permissions.map(
+      (permission: any) => permission.name,
+    ),
+);
+
+const uniquePermissions = [...new Set(permissions)];
+const payload = {
+  sub: user.id,
+  email: user.email,
+  roles,
+  permissions: uniquePermissions,
+};
 
     const accessToken = this.jwtService.sign(payload, {
       expiresIn: '15m',
@@ -40,7 +58,7 @@ export class AuthService {
       expiresIn: '7d',
     });
 
-    await this.usersService.updateRefreshToken(userId, refreshToken);
+    await this.usersService.updateRefreshToken(user.id, refreshToken);
 
     return {
       accessToken,
@@ -54,7 +72,7 @@ export class AuthService {
       secret: process.env.JWT_SECRET || 'supersecret',
     });
 
-    const user = await this.usersService.findByEmail(payload.email);
+    const user = await this.usersService.findByEmailWithRoles(payload.email);
     if (!user || !user.hashedRefreshToken) {
       throw new UnauthorizedException();
     }
@@ -62,7 +80,7 @@ export class AuthService {
     const valid = await bcrypt.compare(token, user.hashedRefreshToken);
     if (!valid) throw new UnauthorizedException();
 
-    return this.generateTokens(user.id, user.email);
+    return this.generateTokens(user);
   } catch {
     throw new UnauthorizedException();
   }
