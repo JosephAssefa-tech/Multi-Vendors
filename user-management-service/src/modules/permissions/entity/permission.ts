@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Tenant } from "src/modules/tenants/entity/tenant";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 
 @Entity('permission')
 export class Permission {
@@ -10,4 +11,6 @@ export class Permission {
 
   @Column({ nullable: true })
   description?: string;
+  @ManyToOne(() => Tenant)
+ tenant!: Tenant;
 }

@@ -14,7 +14,8 @@ export function registerPolicies() {
   PolicyRegistry.register(
     'order:update:own',
     (user, order) =>
-      user.role === 'admin' ||
+      user.role === 'admin'
+     ||
       order.userId === user.id,
   );
 

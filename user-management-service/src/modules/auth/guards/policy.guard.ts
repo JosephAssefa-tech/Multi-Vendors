@@ -35,11 +35,13 @@ export class PolicyGuard implements CanActivate {
 
     // resource MUST be loaded manually
     const resource = request.resource;
+    const tenantId = request.tenantId;
 
     return this.policyEngine.evaluate(
       policyName,
       user,
       resource,
+      tenantId
     );
   }
 }

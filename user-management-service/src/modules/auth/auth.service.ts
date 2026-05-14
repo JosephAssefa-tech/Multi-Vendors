@@ -46,6 +46,7 @@ const uniquePermissions = [...new Set(permissions)];
 const payload = {
   sub: user.id,
   email: user.email,
+  tenantId: user.tenant.id,
   roles,
   permissions: uniquePermissions,
 };

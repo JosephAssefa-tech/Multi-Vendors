@@ -50,7 +50,11 @@ export class ResourceInterceptor
 
     const resource =
       await repo.findOne({
-        where: { id },
+        where: { id,
+          tenant: { id: request.tenantId, }
+
+
+         },
       });
 
     request.resource = resource;

@@ -1,5 +1,6 @@
 import { Permission } from "src/modules/permissions/entity/permission";
-import { PrimaryGeneratedColumn, Column, Entity, JoinTable, ManyToMany } from "typeorm";
+import { Tenant } from "src/modules/tenants/entity/tenant";
+import { PrimaryGeneratedColumn, Column, Entity, JoinTable, ManyToMany, ManyToOne } from "typeorm";
 
 
 @Entity('roles')
@@ -18,4 +19,7 @@ export class Role{
   name: 'role_permissions',
 })
 permissions!: Permission[];
+
+  @ManyToOne(() => Tenant)
+  tenant !: Tenant;
 }

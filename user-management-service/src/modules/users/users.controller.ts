@@ -7,6 +7,8 @@ import { Roles } from '../auth/decorators/roles.decorator';
 import { hasPermissions } from '../auth/decorators/permissions.decorator';
 import { Policy } from '../auth/decorators/policy.decorator';
 import { PolicyGuard } from '../auth/guards/policy.guard';
+import { User } from './domain/entities/user';
+import { UseResource } from '../auth/decorators/resource.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -37,6 +39,7 @@ export class UsersController {
 
   @Put(':id')
   @UseGuards(JwtAuthGuard, PolicyGuard)
+  @UseResource(User)
   @Policy('user:update:own')
   updateUser() {}
 }

@@ -1,5 +1,6 @@
 import { Role } from 'src/modules/roles/entity/role';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Tenant } from 'src/modules/tenants/entity/tenant';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, ManyToOne } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -34,5 +35,7 @@ export class User {
   })
   roles!: Role[];
   
+  @ManyToOne(() => Tenant)
+  tenant !: Tenant;
 
 }

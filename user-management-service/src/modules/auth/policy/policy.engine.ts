@@ -6,6 +6,7 @@ export class PolicyEngine {
 
   async evaluate(
     policyName: string,
+    tenantId: string,
     user: any,
     resource?: any,
   ): Promise<boolean> {
@@ -17,6 +18,6 @@ export class PolicyEngine {
       return false;
     }
 
-    return await policy(user, resource);
+    return await policy(user, resource, tenantId);
   }
 }
