@@ -2,7 +2,7 @@ import { PolicyRegistry } from './policy.registry';
 
 export function registerPolicies() {
 
-  // USER: update own profile
+
   PolicyRegistry.register(
     'user:update:own',
     (user, resource) =>
@@ -10,7 +10,7 @@ export function registerPolicies() {
       user.id === resource.id,
   );
 
-  // ORDER: update own order
+
   PolicyRegistry.register(
     'order:update:own',
     (user, order) =>
@@ -19,7 +19,7 @@ export function registerPolicies() {
       order.userId === user.id,
   );
 
-  // PRODUCT: delete product
+
   PolicyRegistry.register(
     'product:delete',
     (user, product) =>
