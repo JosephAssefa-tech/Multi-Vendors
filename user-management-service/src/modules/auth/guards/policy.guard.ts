@@ -33,7 +33,6 @@ export class PolicyGuard implements CanActivate {
 
     const user = request.user;
 
-    // resource MUST be loaded manually
     const resource = request.resource;
     const tenantId = request.tenantId;
 

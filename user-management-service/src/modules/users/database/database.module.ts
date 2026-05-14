@@ -15,7 +15,7 @@ import { Tenant } from 'src/modules/tenants/entity/tenant';
       password: 'Admin@1234',
       database: 'users_db',
       entities: [User,Role,Permission,Tenant],
-      synchronize: true, // ❗ only dev
+      synchronize: true,
       autoLoadEntities: true,
     }),
   ],

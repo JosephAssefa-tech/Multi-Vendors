@@ -32,7 +32,6 @@ export class ResourceInterceptor
         context.getHandler(),
       );
 
-    // If no resource needed → continue
     if (!entity) {
       return next.handle();
     }
@@ -43,7 +42,7 @@ export class ResourceInterceptor
       return next.handle();
     }
 
-    //  IMPORTANT: dynamic repository access
+
     const repo =
       request.app.get('DataSource')
         .getRepository(entity);
