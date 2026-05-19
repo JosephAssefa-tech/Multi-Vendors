@@ -10,7 +10,6 @@ async function bootstrap() {
     .setTitle('Multi Vendor Ecommerce User Management API')
     .setDescription('The API description')
     .setVersion('1.0')
-    //.addTag('cats')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
