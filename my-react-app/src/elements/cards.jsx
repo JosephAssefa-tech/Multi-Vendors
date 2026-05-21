@@ -1,10 +1,10 @@
-import { useStore } from "../store/storee";
+// import { useStore } from "../store/storee";
 import { useCartStore } from "../store/cartStore";
 import { useNavigate } from "react-router-dom";
 
 function Cards({ product }) {
   const navigate = useNavigate();
-  const{count,increase,decrese} = useStore();
+  // const{count,increase,decrese} = useStore();
   const { addToCart } = useCartStore();
   const showItemDetail = (product) => {
     
