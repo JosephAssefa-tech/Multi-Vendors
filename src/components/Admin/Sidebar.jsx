@@ -71,7 +71,8 @@ function Sidebar() {
     {
       title: "System",
       items: [
-        { name: "Settings", icon: <Settings />, path: "/admin/settings" }
+        { name: "Settings", icon: <Settings />, path: "/admin/settings" },
+        { name: "Users", icon: <People />, path: "/admin/users" }
       ]
     }
   ];
