@@ -4,7 +4,7 @@ import MultiVendorFormInput from "./MultiVendorFormInput "
 import MultivendorFormSelect from "./MultiVendorFormSelect"
 
 //This allows your forms to be configuration driven.
-const FormField = (props)=>{
+const MultiVendorFormField = (props)=>{
 
 
 switch(props.type){

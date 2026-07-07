@@ -14,6 +14,7 @@ export const userFields = [
  name:"lastName",
  label:"Last Name",
  type:"text",
+placeholder:"Enter last name",
  required:true
 },
 
