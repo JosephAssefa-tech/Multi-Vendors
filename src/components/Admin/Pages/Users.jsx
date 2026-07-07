@@ -4,24 +4,37 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
 
 function Users() {
+      const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
     return (
-        <Stack direction="vertical" gap={3} className="p-3">
+        <Stack direction="vertical" gap={3} className="p-2">
 
      
         <div>
-            <h1>Users</h1>
+            <h3>Users</h3>
         </div>
         <Row>
             <Col></Col>
     
-            <Col xs={6} lg={4} className="d-flex justify-content-end">
-                <div className="d-flex justify-content-end mb-3">
-                    <button className="btn btn-primary">Add User</button>
+            <Col xs={6} lg={4} className="d-flex  justify-content-end">
+                <div className="d-flex   mb-3 gap-4">
+                           <Form.Control
+          placeholder="Search users"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+                    <button onClick={handleShow} className="btn btn-primary">Add User</button>
                 </div>
             </Col>
         </Row>
+
         <div>
             <Table striped bordered hover>
                 <thead>
@@ -49,8 +62,24 @@ function Users() {
                     </tr>
                 </tbody>
             </Table>
+         <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
         </div>
            </Stack>
+
+
         
     );
 }
